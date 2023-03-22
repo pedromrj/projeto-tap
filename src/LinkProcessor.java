@@ -22,7 +22,7 @@ public class LinkProcessor implements Runnable {
     private static Set<String> urlsProcessada = new HashSet<>();
     private Map<String, Set<String>> indice;
     private static final int MAXIMA_PROFUNDIDADE = 5;
-    private static int counter = 0;
+    private static int contador = 0;
     private static PrintStream log;
     private ExecutorService executorService;
 
@@ -47,13 +47,13 @@ public class LinkProcessor implements Runnable {
             }
             var site = buscarSite();
             if (site.getResponseCode() == SUCESSO) {
-                log.println("URL " + counter + ": " + url);
+                log.println("URL " + contador + ": " + url);
                 var html = obterHTML(site);
                 var texto = obterTexto(url);
                 indexarPalavra(texto, url, indice);
                 buscarLinks(html);
                 //System.out.println(indice);
-                counter++;
+                contador++;
             }
         } catch (Exception e) {}
     }
